@@ -1,0 +1,13 @@
+{
+  "name": "@farfetch/blackout-react-native-metro-transformer",
+  "version": "0.1.1",
+  "description": "Custom transformer for metro to be used by FPS react-native apps",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "metro": "^0.66.2"
+  },
+  "peerDependencies": {
+    "metro": ">= 0.59.0"
+  }
+}
