@@ -28,5 +28,8 @@
     "@farfetch/blackout-react-native-analytics": "^0.3.0",
     "lodash": "^4.17.21",
     "react-native": "^0.60.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

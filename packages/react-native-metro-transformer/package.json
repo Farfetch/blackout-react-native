@@ -9,5 +9,8 @@
   },
   "peerDependencies": {
     "metro": ">= 0.59.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
