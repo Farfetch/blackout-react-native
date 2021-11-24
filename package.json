@@ -1,0 +1,54 @@
+{
+  "private": true,
+  "name": "@farfetch/blackout-react-native",
+  "description": "Essential cross-platform components for React Native",
+  "repository": "https://github.com/Farfetch/blackout-react-native.git",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.15.0",
+    "npm": ">=6.4.1"
+  },
+  "scripts": {
+    "test": "rimraf coverage && jest",
+    "lint": "eslint .",
+    "make-release": "scripts/make-release.sh",
+    "prepare": "husky install"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "lint-staged": {
+    "*.{json,md}": "prettier --write",
+    "*.js": "eslint --cache --fix"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@react-native-community/async-storage": "^1.10.0",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "eslint": "6.8.0",
+    "husky": "^7.0.0",
+    "jest": "^26.6.3",
+    "lerna": "3.22.0",
+    "lint-staged": "^10.2.2",
+    "postinstall-postinstall": "^2.1.0",
+    "react-native-testing-library": "^1.13.2",
+    "react-test-renderer": "^16.13.1",
+    "rimraf": "^3.0.2"
+  },
+  "resolutions": {
+    "dot-prop": "^6.0.1",
+    "handlebars": "^4.7.7",
+    "hermes-engine": "~0.9.0",
+    "ini": "^1.3.8",
+    "lodash": "^4.17.21",
+    "logkitty": "^0.7.1",
+    "node-notifier": "^8.0.2",
+    "set-value": "^4.0.1",
+    "ua-parser-js": "^0.7.28",
+    "trim-off-newlines": "^1.0.2",
+    "y18n": "^4.0.2",
+    "yargs-parser": "^20.2.9"
+  }
+}
