@@ -18,9 +18,11 @@ npm i @farfetch/blackout-react-native-analytics
 
 ### Peer dependencies
 
-Make sure that you have installed the correct Farfetch's peer dependencies:
+Make sure that you have installed the correct peer dependencies of this package:
 
 - [`@farfetch/blackout-core`](https://www.npmjs.com/package/@farfetch/blackout-core)
+- [`@react-native-firebase/analytics`](https://www.npmjs.com/package/@react-native-firebase/analytics) (Only necessary if you need to use Firebase integration).
+- `react-native-forter` (Only necessary if you need to use Forter integration. Contact Forter to know how to install this package as it is not public.)
 
 ## Usage
 

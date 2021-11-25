@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import pick from 'lodash/pick';
-import firebaseAnalytics from '@react-native-firebase/analytics';
 import {
   integrations,
   trackTypes as analyticsTrackTypes,
@@ -10,9 +9,28 @@ import { buildMapper, formatEvent, formatUserTraits } from './utils';
 import { eventsMapper } from './mapper';
 import { LOGIN_METHOD, USER_PROPERTIES } from './constants';
 
+let firebaseAnalytics;
+
+try {
+  firebaseAnalytics = require('@react-native-firebase/analytics').default;
+} catch (er) {
+  firebaseAnalytics = null;
+}
+
+function checkRNFirebaseAnalyticsInstalled() {
+  if (!firebaseAnalytics) {
+    throw new Error(
+      '[FirebaseAnalytics]: "@react-native-firebase/analytics" package is not installed. Please, make sure you have this dependency installed before using this integration.',
+    );
+  }
+}
 class FirebaseAnalytics extends integrations.Integration {
   /**
    * Creates an instance of firebase Analytics integration (Google Analytics).
+   * Will throw an error if the peer dependency @react-native-firebase/analytics
+   * is not installed.
+   *
+   * @throws
    *
    * @param {Object} options - User configured options.
    * @param {Object} loadData - analytics's load event data.
@@ -20,6 +38,8 @@ class FirebaseAnalytics extends integrations.Integration {
    * @memberof FirebaseAnalytics#
    */
   constructor(options, loadData) {
+    checkRNFirebaseAnalyticsInstalled();
+
     super(options, loadData);
 
     this.lastUserId = null;
@@ -78,7 +98,7 @@ class FirebaseAnalytics extends integrations.Integration {
 
     if (customOnSetUser && typeof customOnSetUser !== 'function') {
       utils.logger.error(
-        'Firebase Analytics - TypeError: "onSetUser" is not a function. If you are passing a custom "onSetUser" property to the integration, make sure you are passing a valid function.',
+        '[FirebaseAnalytics] TypeError: "onSetUser" is not a function. If you are passing a custom "onSetUser" property to the integration, make sure you are passing a valid function.',
       );
 
       return this;
@@ -181,8 +201,7 @@ class FirebaseAnalytics extends integrations.Integration {
 
     if (typeof eventMapperFn !== 'function') {
       utils.logger.error(
-        `Firebase Analytics - TypeError: Event mapping for event "${event}" is not a function.
-        If you're passing a custom event mapping for this event, make sure a function is passed.`,
+        `[FirebaseAnalytics] TypeError: Event mapping for event "${event}" is not a function. If you're passing a custom event mapping for this event, make sure a function is passed.`,
       );
 
       return this;
@@ -192,8 +211,7 @@ class FirebaseAnalytics extends integrations.Integration {
 
     if (properties && typeof properties !== 'object') {
       utils.logger.error(
-        `Firebase Analytics - TypeError: The properties passed for event ${event} is not an object. If you are passing a custom event mapping for this event,
-        make sure you return a valid object under "properties" key.`,
+        `[FirebaseAnalytics] TypeError: The properties passed for event ${event} is not an object. If you are passing a custom event mapping for this event, make sure you return a valid object under "properties" key.`,
       );
 
       return this;
@@ -204,7 +222,7 @@ class FirebaseAnalytics extends integrations.Integration {
 
       if (!firebaseAnalyticsMethod) {
         utils.logger.error(
-          `Firebase analytics method "${firebaseAnalyticsMethod}" it not defined. If you are passing a custom event mapping, make sure you return a supported Firebase Analytics event.`,
+          `[FirebaseAnalytics] Method "${method}" is not defined. If you are passing a custom event mapping, make sure you return a supported Firebase Analytics event.`,
         );
 
         return this;

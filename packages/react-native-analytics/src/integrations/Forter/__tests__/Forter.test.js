@@ -90,6 +90,18 @@ describe('Forter', () => {
     ).toBeInstanceOf(Forter);
   });
 
+  it('Should throw an error if "react-native-forter" is not installed', () => {
+    jest.resetModules();
+
+    jest.doMock('react-native-forter', () => undefined);
+
+    const FreshForterIntegration = require('../Forter').default;
+
+    expect(() => FreshForterIntegration.createInstance()).toThrow(
+      '[Forter]: "react-native-forter" package is not installed. Please, make sure you have this dependency installed before using this integration.',
+    );
+  });
+
   describe('Options Validations', () => {
     it(`Should throw an error if '${OPTION_SITE_ID}' is not specified in options`, () => {
       expect(() =>

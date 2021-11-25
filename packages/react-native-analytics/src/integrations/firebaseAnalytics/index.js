@@ -1,1 +1,1 @@
-export { default } from './firebaseAnalytics';
+export { default } from './FirebaseAnalytics';

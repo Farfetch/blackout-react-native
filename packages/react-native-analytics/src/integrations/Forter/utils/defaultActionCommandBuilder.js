@@ -1,6 +1,14 @@
-import { ForterActionType } from 'react-native-forter';
-
 import eventTypes from '../../../eventTypes';
+
+let ForterActionType;
+
+try {
+  ForterActionType = require('react-native-forter').ForterActionType;
+} catch (e) {
+  // Set it to a default object so it does not throw when importing and
+  // react-native-forter is not installed.
+  ForterActionType = {};
+}
 
 const eventTypesMap = {
   [eventTypes.PRODUCT_ADDED_TO_CART]: ForterActionType.ADD_TO_CART,

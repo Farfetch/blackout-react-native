@@ -1,4 +1,3 @@
-import { forterSDK, ForterAccountType } from 'react-native-forter';
 import { Platform } from 'react-native';
 
 import defaultTo from 'lodash/defaultTo';
@@ -30,6 +29,26 @@ import {
   USER_AGENT,
 } from './constants';
 
+let forterSDK;
+let ForterAccountType;
+
+try {
+  const reactNativeForter = require('react-native-forter');
+  forterSDK = reactNativeForter.forterSDK;
+  ForterAccountType = reactNativeForter.ForterAccountType;
+} catch (er) {
+  forterSDK = null;
+  ForterAccountType = null;
+}
+
+function checkRNForterInstalled() {
+  if (!forterSDK) {
+    throw new Error(
+      '[Forter]: "react-native-forter" package is not installed. Please, make sure you have this dependency installed before using this integration.',
+    );
+  }
+}
+
 /**
  * Forter integration for analytics that uses react-native-forter to communicate
  * events to Forter servers.
@@ -50,12 +69,18 @@ import {
 class Forter extends integrations.Integration {
   /**
    * Creates an instance of Forter integration.
+   * Will throw an error if the peer dependency react-native-forter
+   * is not installed.
+   *
+   * @throws
    *
    * @param {object} options - User configured options.
    * @param {object} loadData - analytics's load event data.
    * @param {object} analytics - Stripped down analytics instance with helper methods.
    */
   constructor(options, loadData, analytics) {
+    checkRNForterInstalled();
+
     const safeOptions = defaultTo(options, {});
 
     super(safeOptions, loadData, analytics);
