@@ -48,4 +48,4 @@ Blackout-react-native is a project maintained by some awesome [contributors](htt
 
 ## License
 
-[MIT](LICENSE.md) @ Farfetch
+[MIT](LICENSE) @ Farfetch

@@ -43,4 +43,4 @@ Please read the [CONTRIBUTING](../../CONTRIBUTING.md) file to know what we expec
 
 ## License
 
-[MIT](../../LICENSE.md) @ Farfetch
+[MIT](../../LICENSE) @ Farfetch
