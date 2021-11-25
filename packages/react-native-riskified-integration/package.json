@@ -21,13 +21,13 @@
     "axios": "^0.21.4",
     "lodash": "^4.17.21",
     "react": "^16.8.1",
-    "react-native": "^0.60.0"
+    "react-native": "^0.62.3"
   },
   "peerDependencies": {
     "@farfetch/blackout-core": "^1.42.0",
     "@farfetch/blackout-react-native-analytics": "^0.3.0",
     "lodash": "^4.17.21",
-    "react-native": "^0.60.0"
+    "react-native": "^0.62.3"
   },
   "publishConfig": {
     "access": "public"
