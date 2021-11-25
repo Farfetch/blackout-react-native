@@ -17,14 +17,14 @@
     "@react-native-firebase/app": "^10.3.0",
     "axios": "^0.21.4",
     "react": "^16.8.1",
-    "react-native": "^0.60.0",
+    "react-native": "^0.62.3",
     "react-native-device-info": "^5.5.8"
   },
   "peerDependencies": {
     "@farfetch/blackout-core": "^1.42.0",
     "@react-native-community/async-storage": "^1.6.1",
     "@react-native-firebase/analytics": "^10.3.0",
-    "react-native": "^0.60.0",
+    "react-native": "^0.62.3",
     "react-native-device-info": "^5.5.8",
     "react-native-forter": "^0.1.10"
   },
