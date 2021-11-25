@@ -19,7 +19,10 @@ const mockFirebaseAnalyticsReturn = {
 };
 
 jest.mock('@react-native-firebase/analytics', () => {
-  return jest.fn(() => mockFirebaseAnalyticsReturn);
+  return {
+    __esModule: true,
+    default: jest.fn(() => mockFirebaseAnalyticsReturn),
+  };
 });
 
 jest.mock('@farfetch/blackout-core/analytics', () => ({
@@ -39,6 +42,10 @@ function createInstance(options, loadData) {
 
   return instance;
 }
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 describe('FirebaseAnalyticsIntegration integration', () => {
   it('Should extend the abstract class `Integration`', () => {
@@ -64,6 +71,18 @@ describe('FirebaseAnalyticsIntegration integration', () => {
   it('Should return a FirebaseAnalyticsIntegration instance from createInstance', () => {
     expect(FirebaseAnalyticsIntegration.createInstance({})).toBeInstanceOf(
       FirebaseAnalyticsIntegration,
+    );
+  });
+
+  it('Should throw an error if "@react-native-firebase/analytics" is not installed', () => {
+    jest.resetModules();
+
+    jest.doMock('@react-native-firebase/analytics', () => undefined);
+
+    const FreshFirebaseAnalyticsIntegration = require('..').default;
+
+    expect(() => FreshFirebaseAnalyticsIntegration.createInstance()).toThrow(
+      '[FirebaseAnalytics]: "@react-native-firebase/analytics" package is not installed. Please, make sure you have this dependency installed before using this integration.',
     );
   });
 });
@@ -112,7 +131,7 @@ describe('FirebaseAnalyticsIntegration instance', () => {
       createInstance(options, loadData);
 
       expect(utils.logger.error).toHaveBeenCalledWith(
-        'Firebase Analytics - TypeError: "onSetUser" is not a function. If you are passing a custom "onSetUser" property to the integration, make sure you are passing a valid function.',
+        '[FirebaseAnalytics] TypeError: "onSetUser" is not a function. If you are passing a custom "onSetUser" property to the integration, make sure you are passing a valid function.',
       );
 
       options.onSetUser = customOnSetUserSpy;
@@ -232,7 +251,9 @@ describe('FirebaseAnalyticsIntegration instance', () => {
 
       await instance.track(analyticsTrackEventData);
 
-      expect(utils.logger.error).toHaveBeenCalled();
+      expect(utils.logger.error).toHaveBeenCalledWith(
+        '[FirebaseAnalytics] TypeError: Event mapping for event "Product Clicked" is not a function. If you\'re passing a custom event mapping for this event, make sure a function is passed.',
+      );
 
       utils.logger.error.mockClear();
 
@@ -248,7 +269,9 @@ describe('FirebaseAnalyticsIntegration instance', () => {
 
       await instance.track(analyticsTrackEventData);
 
-      expect(utils.logger.error).toHaveBeenCalled();
+      expect(utils.logger.error).toHaveBeenCalledWith(
+        '[FirebaseAnalytics] TypeError: The properties passed for event Product Clicked is not an object. If you are passing a custom event mapping for this event, make sure you return a valid object under "properties" key.',
+      );
 
       utils.logger.error.mockClear();
 
@@ -281,7 +304,9 @@ describe('FirebaseAnalyticsIntegration instance', () => {
 
       await instance.track(analyticsTrackEventData);
 
-      expect(utils.logger.error).toHaveBeenCalled();
+      expect(utils.logger.error).toHaveBeenCalledWith(
+        '[FirebaseAnalytics] Method "unknownMethodOfFirebase" is not defined. If you are passing a custom event mapping, make sure you return a supported Firebase Analytics event.',
+      );
 
       firebaseAnalytics().logEvent.mockClear();
       // Test a mapped event that returns a valid function with valid `properties` without a high-level method

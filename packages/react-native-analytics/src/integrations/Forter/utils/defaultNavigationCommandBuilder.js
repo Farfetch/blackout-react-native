@@ -1,9 +1,16 @@
-import get from 'lodash/get';
-import { ForterNavigationType } from 'react-native-forter';
-
 import { utils } from '@farfetch/blackout-core/analytics';
-
+import get from 'lodash/get';
 import screenTypes from '../../../screenTypes';
+
+let ForterNavigationType;
+
+try {
+  ForterNavigationType = require('react-native-forter').ForterNavigationType;
+} catch (e) {
+  // Set it to a default object so it does not throw when importing and
+  // react-native-forter is not installed.
+  ForterNavigationType = {};
+}
 
 /**
  * Default screen types mappings to ForterNavigationType enumeration.
