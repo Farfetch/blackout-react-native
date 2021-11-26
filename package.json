@@ -27,7 +27,6 @@
   "scripts": {
     "test": "rimraf coverage && jest",
     "lint": "eslint .",
-    "make-release": "scripts/make-release.sh",
     "prepare": "husky install"
   },
   "workspaces": [
