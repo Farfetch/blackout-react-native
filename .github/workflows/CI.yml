@@ -82,7 +82,7 @@ jobs:
       - name: Make release
         if: |
           github.ref_name == 'main' ||
-          (startsWith(github.ref_name, 'rc/') && github.event_name == 'pull_request')
+          (github.event_name == 'pull_request' && startsWith(github.head_ref, 'rc/'))
         env:
           PUBLISH_COMMIT_MESSAGE: "chore: publish [skip ci]"
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
