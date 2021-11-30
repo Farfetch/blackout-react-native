@@ -1,25 +1,31 @@
-":package:  react-native-analytics":
+':package:  react-native-analytics':
   - 'packages/react-native-analytics/**/*'
   - 'packages/react-native-analytics/**/.*'
   - 'packages/react-native-analytics/.**/*'
   - 'packages/react-native-analytics/.**/.*'
 
-":package:   react-native-metro-transformer":
+':package:   react-native-metro-transformer':
   - 'packages/react-native-metro-transformer/**/*'
   - 'packages/react-native-metro-transformer/**/.*'
   - 'packages/react-native-metro-transformer/.**/*'
   - 'packages/react-native-metro-transformer/.**/.*'
 
-":package:    react-native-riskified-integration":
+':package:   react-native-payments':
+  - 'packages/react-native-payments/**/*'
+  - 'packages/react-native-payments/**/.*'
+  - 'packages/react-native-payments/.**/*'
+  - 'packages/react-native-payments/.**/.*'
+
+':package:    react-native-riskified-integration':
   - 'packages/react-native-riskified-integration/**/*'
   - 'packages/react-native-riskified-integration/**/.*'
   - 'packages/react-native-riskified-integration/.**/*'
   - 'packages/react-native-riskified-integration/.**/.*'
 
-"type: maintenance":
+'type: maintenance':
   - any: ['.github/**/*', '!**/*.md', '!.**/*.md']
 
-"type: documentation":
+'type: documentation':
   - '**/*.md'
   - '**/.*.md'
   - '.**/*.md'

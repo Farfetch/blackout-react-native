@@ -17,6 +17,11 @@ module.exports = {
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     '^@farfetch/blackout-core(.*)$': '@farfetch/blackout-core/src$1',
+    '^@farfetch/blackout-react-native-analytics(.*)$':
+      '@farfetch/blackout-react-native-analytics/src$1',
+    '^@farfetch/blackout-react-native-payments(.*)$':
+      '@farfetch/blackout-react-native-payments/src$1',
+    '^@farfetch/blackout-react(.*)$': '@farfetch/blackout-react/src$1',
   },
   // A preset that is used as a base for Jest's configuration
   preset: 'react-native',
@@ -26,4 +31,6 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(react-native|react-navigation|@react-navigation|@react-native-community|@farfetch|@react-native-firebase/*))',
   ],
+  // Addtional React Native-specific jest matchers from @testing-library/jest-native package
+  setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
 };

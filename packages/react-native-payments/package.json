@@ -1,0 +1,25 @@
+{
+  "name": "react-native-payments",
+  "version": "0.0.0",
+  "description": "Payments solutions for react-native apps.",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@farfetch/blackout-react": "^0.25.1",
+    "react-native": "^0.60.0",
+    "react-native-webview": "^11.6.2"
+  },
+  "devDependencies": {
+    "@farfetch/blackout-react": "^0.25.1",
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react-native": "^8.0.0",
+    "react-native": "^0.60.0",
+    "react-native-webview": "^11.6.2"
+  }
+}

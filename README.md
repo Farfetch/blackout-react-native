@@ -21,6 +21,10 @@ Each package has its own `package.json` file and defines its dependencies, havin
 
 - Custom transformer for `metro` to be used by FPS react-native apps
 
+[**@farfetch/blackout-react-native-payments**](packages/react-native-payments)
+
+- Payments solutions for react-native apps
+
 [**@farfetch/blackout-react-native-riskified-integration**](packages/react-native-riskified-integration)
 
 - Riskified integration for @farfetch/blackout-react-native-analytics

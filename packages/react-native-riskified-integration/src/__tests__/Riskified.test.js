@@ -34,7 +34,7 @@ jest.mock('@farfetch/blackout-react-native-analytics', () => {
   );
 
   const originalScreenTypes = jest.requireActual(
-    '@farfetch/blackout-react-native-analytics/src/screenTypes',
+    '@farfetch/blackout-react-native-analytics/screenTypes',
   ).default;
 
   return {

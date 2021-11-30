@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreditCard should render the WebView with a correct source url 1`] = `
+<div>
+  mockurl?paymentIntentId=48f9cd72-7fcb-42e6-b610-b870ec5343ec&staticName=whitelabel&folderName=pg-12&locale=en-PT
+</div>
+`;
