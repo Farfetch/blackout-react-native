@@ -43,9 +43,7 @@ const CreditCard = ({
       }
 
       const payload = data?.payload;
-
       const payloadStatus = payload?.info?.status;
-
       const payloadData = payload?.data;
       const paymentData = payloadData?.paymentData;
 
