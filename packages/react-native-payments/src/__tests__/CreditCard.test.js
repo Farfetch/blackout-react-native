@@ -15,23 +15,23 @@ jest.mock('@farfetch/blackout-react/authentication/hooks', () => ({
   }),
 }));
 
+const mockDispatch = jest.fn();
+const props = {
+  additionalProperies: {
+    url: 'mockurl',
+    staticName: 'whitelabel',
+    folderName: 'pg-12',
+    locale: 'en-PT',
+  },
+  creditCardDispatch: mockDispatch,
+  paymentIntentId: '48f9cd72-7fcb-42e6-b610-b870ec5343ec',
+  webViewRef: () => ({ current: { injectJavaScript: jest.fn() } }),
+};
+
 describe('CreditCard', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-
-  const mockDispatch = jest.fn();
-  const props = {
-    additionalProperies: {
-      url: 'mockurl',
-      staticName: 'whitelabel',
-      folderName: 'pg-12',
-      locale: 'en-PT',
-    },
-    creditCardDispatch: mockDispatch,
-    paymentIntentId: '48f9cd72-7fcb-42e6-b610-b870ec5343ec',
-    webViewRef: () => ({ current: { injectJavaScript: jest.fn() } }),
-  };
 
   it('should render the WebView with a correct source url', () => {
     const { toJSON } = render(<CreditCard {...props} />);
@@ -42,7 +42,8 @@ describe('CreditCard', () => {
   it('should call dispatch', () => {
     render(<CreditCard {...props} />);
 
-    expect(mockDispatch).toHaveBeenCalledWith({
+    expect(mockDispatch).toHaveBeenNthCalledWith(1, { isFormValid: true });
+    expect(mockDispatch).toHaveBeenNthCalledWith(2, {
       instrumentAdded: true,
       instrumentId: '48f9cd72-7fcb-42e6-b610-b870ec5343ec',
     });

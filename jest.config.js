@@ -4,7 +4,7 @@ module.exports = {
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: ['./packages/**/src/**/*.{js,jsx}'],
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ['/node_modules/', '__tests__/'],
+  coveragePathIgnorePatterns: ['/node_modules/', '__tests__/', 'constants.js'],
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
     global: {
