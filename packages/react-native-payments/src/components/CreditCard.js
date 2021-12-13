@@ -17,7 +17,6 @@ const CreditCard = ({
       data: { accessToken },
     },
   } = useAuthentication();
-
   const webViewSource = useMemo(
     () => ({
       uri: `${additionalProperies?.url}?paymentIntentId=${paymentIntentId}&staticName=${additionalProperies?.staticName}&folderName=${additionalProperies?.folderName}&locale=${additionalProperies?.locale}`,
@@ -28,7 +27,6 @@ const CreditCard = ({
     }),
     [accessToken, additionalProperies, paymentIntentId],
   );
-
   const updateStateWithOperationResult = useCallback(
     event => {
       const data = JSON.parse(event?.nativeEvent?.data);
@@ -66,7 +64,6 @@ const CreditCard = ({
     },
     [creditCardDispatch],
   );
-
   const attachEventListener = useCallback(() => {
     webViewRef.current?.injectJavaScript(ADD_LISTENER_JS);
   }, [webViewRef]);

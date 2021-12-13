@@ -75,7 +75,7 @@ const Checkout: React.FC = () => {
       />
       <S.ButtonView>
         <Button fullwidth primary onPress={handleCharge}>
-          {t('submit')}
+          submit
         </Button>
       </S.ButtonView>
     </S.ViewContainer>

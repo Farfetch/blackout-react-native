@@ -6,10 +6,7 @@
   "files": [
     "src"
   ],
-  "license": "UNLICENSED",
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
   "peerDependencies": {
     "@farfetch/blackout-react": "^0.25.1",
     "react-native": "^0.60.0",
@@ -21,5 +18,8 @@
     "@testing-library/react-native": "^8.0.0",
     "react-native": "^0.60.0",
     "react-native-webview": "^11.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

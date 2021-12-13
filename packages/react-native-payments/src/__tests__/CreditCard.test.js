@@ -21,7 +21,6 @@ describe('CreditCard', () => {
   });
 
   const mockDispatch = jest.fn();
-
   const props = {
     additionalProperies: {
       url: 'mockurl',
