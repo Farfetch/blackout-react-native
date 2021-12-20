@@ -28,7 +28,7 @@ export default class Riskified extends integrations.Integration {
    * @static
    *
    * @param {Object} options  - Integration options.
-   * @param {Object} loadData - analytics's load event data.
+   * @param {Object} loadData - Analytics' load event data.
    *
    * @returns {Object}        - An instance of Riskified class.
    *
@@ -43,7 +43,7 @@ export default class Riskified extends integrations.Integration {
    * necessary data is provided.
    *
    * @param {Object} options - Custom options for the integration.
-   * @param {Object} loadData - analytics's load event data.
+   * @param {Object} loadData - Analytics' load event data.
    *
    * @memberof Riskified#
    */

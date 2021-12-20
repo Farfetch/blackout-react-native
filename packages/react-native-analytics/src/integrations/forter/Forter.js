@@ -6,12 +6,12 @@ import merge from 'lodash/merge';
 
 import {
   eventTypes,
-  integrations,
   trackTypes as analyticsTrackTypes,
   trackTypes,
   utils,
 } from '@farfetch/blackout-core/analytics';
 
+import Integration from '../integration';
 import { formatTrackEvent } from '@farfetch/blackout-core/analytics/integrations/Omnitracking/omnitracking-helper';
 import { postTrackings } from '@farfetch/blackout-core/analytics/integrations/Omnitracking/client';
 
@@ -55,9 +55,10 @@ function checkRNForterInstalled() {
  *
  * @example <caption>Adding Forter integration to analytics</caption>
  *
- * import analytics, { integrations } from '@farfetch/blackout-react-native-analytics';
+ * import analytics from '@farfetch/blackout-react-native-analytics';
+ * import Forter from '@farfetch/blackout-react-native-analytics/integrations/forter';
  *
- * analytics.addIntegration('forter', integrations.Forter, {
+ * analytics.addIntegration('forter', Forter, {
  *   siteId: '<site_id>', //required
  *   origin: '<domain>'   //optional, but helps in debugging issues
  * });
@@ -66,7 +67,7 @@ function checkRNForterInstalled() {
  * @category Analytics
  * @subcategory Integrations
  */
-class Forter extends integrations.Integration {
+class Forter extends Integration {
   /**
    * Creates an instance of Forter integration.
    * Will throw an error if the peer dependency react-native-forter
@@ -75,7 +76,7 @@ class Forter extends integrations.Integration {
    * @throws
    *
    * @param {object} options - User configured options.
-   * @param {object} loadData - analytics's load event data.
+   * @param {object} loadData - Analytics' load event data.
    * @param {object} analytics - Stripped down analytics instance with helper methods.
    */
   constructor(options, loadData, analytics) {
@@ -111,7 +112,7 @@ class Forter extends integrations.Integration {
    * Method used to create a new Forter instance by analytics.
    *
    * @param {object} options - Integration options.
-   * @param {object} loadData - analytics's load event data.
+   * @param {object} loadData - Analytics' load event data.
    * @param {object} analytics - Stripped down analytics instance with helper methods.
    *
    * @returns {Forter} - An instance of Forter class.

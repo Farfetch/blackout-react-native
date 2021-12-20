@@ -1,10 +1,10 @@
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 import {
-  integrations,
   trackTypes as analyticsTrackTypes,
   utils,
 } from '@farfetch/blackout-core/analytics';
+import Integration from '../integration';
 import { buildMapper, formatEvent, formatUserTraits } from './utils';
 import { eventsMapper } from './mapper';
 import { LOGIN_METHOD, USER_PROPERTIES } from './constants';
@@ -24,7 +24,7 @@ function checkRNFirebaseAnalyticsInstalled() {
     );
   }
 }
-class FirebaseAnalytics extends integrations.Integration {
+class FirebaseAnalytics extends Integration {
   /**
    * Creates an instance of firebase Analytics integration (Google Analytics).
    * Will throw an error if the peer dependency @react-native-firebase/analytics
@@ -33,7 +33,7 @@ class FirebaseAnalytics extends integrations.Integration {
    * @throws
    *
    * @param {Object} options - User configured options.
-   * @param {Object} loadData - analytics's load event data.
+   * @param {Object} loadData - Analytics' load event data.
    *
    * @memberof FirebaseAnalytics#
    */
@@ -70,7 +70,7 @@ class FirebaseAnalytics extends integrations.Integration {
    * @static
    *
    * @param {Object} options - Integration options.
-   * @param {Object} loadData - analytics's load event data.
+   * @param {Object} loadData - Analytics' load event data.
    *
    *
    * @returns {Object} - An instance of FirebaseAnalytics class.

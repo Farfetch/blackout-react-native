@@ -44,9 +44,9 @@ You will need to add the `Omnitracking` integration from `@farfetch/blackout-rea
 
 ```javascript
 import analytics, {
-  integrations,
 } from '@farfetch/blackout-react-native-analytics';
 import Riskified from '@farfetch/blackout-react-native-riskified-integration';
+import Omnitracking from '@farfetch/blackout-react-native-analytics/integrations/omnitracking';
 
 // Add the integration to analytics instance
 analytics.addIntegration('riskified', Riskified, {
@@ -64,7 +64,7 @@ analytics.addIntegration('riskified', Riskified, {
 });
 
 // Add `Omnitracking` integration is required for this integration to work correctly
-analytics.addIntegration('omnitracking', integrations.Omnitracking);
+analytics.addIntegration('omnitracking', Omnitracking);
 ```
 
 ### Options

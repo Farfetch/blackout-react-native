@@ -1,6 +1,7 @@
 import ReactNativeAnalyticsService from '../AnalyticsService';
-import { integrations, trackTypes } from '@farfetch/blackout-core/analytics';
+import { trackTypes } from '@farfetch/blackout-core/analytics';
 import { INACTIVE_APP_STATE, BACKGROUND_APP_STATE } from '../constants';
+import AnalyticsService from '@farfetch/blackout-core/analytics/integrations/AnalyticsService/AnalyticsService';
 
 jest.mock('react-native', () => ({
   AppState: {
@@ -19,7 +20,7 @@ describe('ReactNativeAnalyticsService', () => {
       const instance = ReactNativeAnalyticsService.createInstance();
 
       expect(instance).toBeInstanceOf(ReactNativeAnalyticsService);
-      expect(instance).toBeInstanceOf(integrations.AnalyticsService);
+      expect(instance).toBeInstanceOf(AnalyticsService);
     });
   });
 
