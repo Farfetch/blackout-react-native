@@ -12,7 +12,10 @@
  * @subcategory Integrations
  */
 
-import { integrations, trackTypes } from '@farfetch/blackout-core/analytics';
+import { trackTypes } from '@farfetch/blackout-core/analytics';
+// TODO: The folder of the integration does not contain an index.js file. Remove this when the index.js file is added.
+import CoreAnalyticsService from '@farfetch/blackout-core/analytics/integrations/AnalyticsService/AnalyticsService';
+
 import { AppState } from 'react-native';
 import { BACKGROUND_APP_STATE, INACTIVE_APP_STATE } from './constants';
 
@@ -20,9 +23,9 @@ import { BACKGROUND_APP_STATE, INACTIVE_APP_STATE } from './constants';
  * Analytics service integration.
  *
  * @private
- * @augments integrations.AnalyticsService
+ * @augments CoreAnalyticsService
  */
-class ReactNativeAnalyticsService extends integrations.AnalyticsService {
+class ReactNativeAnalyticsService extends CoreAnalyticsService {
   constructor(options, loadData, analytics) {
     super(options, loadData, analytics);
 
@@ -33,7 +36,7 @@ class ReactNativeAnalyticsService extends integrations.AnalyticsService {
    * Method used to create a new AnalyticsService instance by analytics.
    *
    * @param {object} options - Integration options.
-   * @param {object} loadData - Analytics's load event data.
+   * @param {object} loadData - Analytics' load event data.
    * @param {object} analytics - Analytics instance stripped down with only helpers.
    *
    * @returns {ReactAnalytNativeicsService} An instance of AnalyticsService class.

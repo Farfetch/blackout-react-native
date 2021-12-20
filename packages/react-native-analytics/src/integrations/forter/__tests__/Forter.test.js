@@ -6,7 +6,7 @@ import {
 } from 'react-native-forter';
 
 import merge from 'lodash/merge';
-import Forter from '../Forter';
+import Forter from '..';
 
 import {
   FORTER_TOKEN_ID,

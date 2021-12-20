@@ -8,6 +8,7 @@ export const NativeModules = {
   I18nManager: {
     localeIdentifier: 'en',
   },
+  Castle: () => undefined,
 };
 
 export const Platform = {

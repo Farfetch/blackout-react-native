@@ -2,12 +2,12 @@ import FirebaseAnalyticsIntegration from '../';
 import { eventsMapper } from '../mapper';
 import {
   eventTypes,
-  integrations,
   trackTypes as analyticsTrackTypes,
   utils,
 } from '@farfetch/blackout-core/analytics';
 import firebaseAnalytics from '@react-native-firebase/analytics';
 import { LOGIN_METHOD } from '../constants';
+import Integration from '../../integration';
 
 const mockFirebaseAnalyticsReturn = {
   logScreenView: jest.fn(),
@@ -49,9 +49,7 @@ beforeEach(() => {
 
 describe('FirebaseAnalyticsIntegration integration', () => {
   it('Should extend the abstract class `Integration`', () => {
-    expect(FirebaseAnalyticsIntegration.prototype).toBeInstanceOf(
-      integrations.Integration,
-    );
+    expect(FirebaseAnalyticsIntegration.prototype).toBeInstanceOf(Integration);
   });
 
   it('`shouldLoad` should return false if there is no user consent', () => {
