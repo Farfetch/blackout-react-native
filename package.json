@@ -40,7 +40,7 @@
     "@babel/core": "^7.9.6",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@react-native-community/async-storage": "^1.10.0",
+    "@react-native-async-storage/async-storage": "^1.16.0",
     "@react-native-community/eslint-config": "^1.1.0",
     "eslint": "6.8.0",
     "husky": "^7.0.0",

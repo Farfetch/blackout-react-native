@@ -10,8 +10,9 @@ import com.android.riskifiedbeacon.RiskifiedBeaconMainInterface;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.LifecycleEventListener;
 
-public class RiskifiedIntegrationModule extends ReactContextBaseJavaModule {
+public class RiskifiedIntegrationModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
     private final ReactApplicationContext reactContext;
     private final RiskifiedBeaconMainInterface RXBeacon = new RiskifiedBeaconMain();
@@ -29,46 +30,20 @@ public class RiskifiedIntegrationModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startBeacon(String shopName, String sessionToken, boolean debugInfo) {
         RXBeacon.startBeacon(shopName, sessionToken, debugInfo, this.reactContext);
+        this.reactContext.addLifecycleEventListener(this);
+    }
 
+    @Override
+    public void onHostResume() {
+    }
 
-        Application app  = this.getCurrentActivity().getApplication();
+    @Override
+    public void onHostPause() {
+        RXBeacon.removeLocationUpdates();
+    }
 
-        app.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
-            @Override
-            public void onActivityCreated(Activity activity, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onActivityStarted(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityResumed(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityPaused(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityStopped(Activity activity) {
-                RXBeacon.removeLocationUpdates();
-            }
-
-            @Override
-            public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onActivityDestroyed(Activity activity) {
-
-            }
-        });
+    @Override
+    public void onHostDestroy() {
     }
 
     @ReactMethod

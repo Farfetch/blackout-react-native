@@ -33,7 +33,7 @@ import analytics from '@farfetch/blackout-react-native-analytics';
 
 // `AsyncStorage` implements `getItem(key)`, `setItem(key, value)` and `removeItem(key)` used by analytics.
 // `Analytics` will await these calls if they are async.
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 analytics.setStorage(AsyncStorage);
 ```
