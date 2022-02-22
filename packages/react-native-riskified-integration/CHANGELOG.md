@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.4.2...@farfetch/blackout-react-native-riskified-integration@0.4.3) (2022-02-22)
+
+### Bug Fixes
+
+- fix android crash and update async-storage package ([c7e14cb](https://github.com/Farfetch/blackout-react-native/commit/c7e14cb0c3f881dc3149cd75398bfc48886e78c8))
+
 ## [0.4.2](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.4.1...@farfetch/blackout-react-native-riskified-integration@0.4.2) (2021-11-25)
 
 **Note:** Version bump only for package @farfetch/blackout-react-native-riskified-integration
