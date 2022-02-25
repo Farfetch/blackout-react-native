@@ -1,7 +1,7 @@
 {
   "name": "@farfetch/blackout-react-native-riskified-integration",
   "title": "React Native Riskified Integration",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Riskified integration for @farfetch/blackout-react-native-analytics",
   "main": "src/index.js",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "author": "Farfetch Platform Solutions",
   "devDependencies": {
     "@farfetch/blackout-core": "^1.42.0",
-    "@farfetch/blackout-react-native-analytics": "^0.6.3",
+    "@farfetch/blackout-react-native-analytics": "^0.7.0",
     "axios": "^0.21.4",
     "lodash": "^4.17.21",
     "react": "^16.8.1",

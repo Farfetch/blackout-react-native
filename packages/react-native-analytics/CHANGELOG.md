@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.6.3...@farfetch/blackout-react-native-analytics@0.7.0) (2022-02-25)
+
+### Features
+
+- **react-native-analytics:** add react-native castle.io integration ([b76d92c](https://github.com/Farfetch/blackout-react-native/commit/b76d92c8fbb279860d96144766ac6d101aae6609))
+
 ## [0.6.3](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.6.2...@farfetch/blackout-react-native-analytics@0.6.3) (2022-02-22)
 
 ### Bug Fixes
