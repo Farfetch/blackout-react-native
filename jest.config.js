@@ -17,6 +17,8 @@ module.exports = {
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     '^@farfetch/blackout-core(.*)$': '@farfetch/blackout-core/src$1',
+    '^@farfetch/blackout-react-native-analytics(.*)$':
+      '@farfetch/blackout-react-native-analytics/src$1',
   },
   // A preset that is used as a base for Jest's configuration
   preset: 'react-native',

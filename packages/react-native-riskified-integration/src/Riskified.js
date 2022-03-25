@@ -1,14 +1,14 @@
 import {
   eventTypes,
-  integrations,
   trackTypes,
   utils,
 } from '@farfetch/blackout-react-native-analytics';
+import Integration from '@farfetch/blackout-react-native-analytics/integrations/integration';
 import { NativeModules, Platform } from 'react-native';
 import get from 'lodash/get';
 
 const { RiskifiedIntegration } = NativeModules;
-export default class Riskified extends integrations.Integration {
+export default class Riskified extends Integration {
   /**
    * Returns true due to being a required integration - No need to check for consent.
    *
