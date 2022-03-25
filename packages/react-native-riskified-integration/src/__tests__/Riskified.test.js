@@ -22,24 +22,13 @@ jest.mock('react-native', () => ({
   },
 }));
 
-// NOTE: We need to create a mock for @farfetch/blackout-react-native-analytics
-//       because if not, an error will occur when importing @farfetch/blackout-react-native-analytics
-//       with firebase that is imported there. To circumvent it,
-//       we create a mock of react-native-analytics by using @farfetch/blackout-core module.
-//       Do not use requireActual with @farfetch/blackout-react-native-analytics as it will
-//       raise the problem as well.
 jest.mock('@farfetch/blackout-react-native-analytics', () => {
-  const originalAnalyticsCore = jest.requireActual(
-    '@farfetch/blackout-core/analytics',
+  const original = jest.requireActual(
+    '@farfetch/blackout-react-native-analytics',
   );
 
-  const originalScreenTypes = jest.requireActual(
-    '@farfetch/blackout-react-native-analytics/src/screenTypes',
-  ).default;
-
   return {
-    ...originalAnalyticsCore,
-    screenTypes: originalScreenTypes,
+    ...original,
     utils: {
       logger: {
         error: jest.fn(),
