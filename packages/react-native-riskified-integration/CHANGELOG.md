@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.5.0...@farfetch/blackout-react-native-riskified-integration@0.5.1) (2022-03-29)
+
+### Bug Fixes
+
+- **react-native-riskified-integration:** fix wrong import in Riskified ([4397c83](https://github.com/Farfetch/blackout-react-native/commit/4397c83ace11d180e06d6565c942ddfef043f0f7))
+
 # [0.5.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.4.3...@farfetch/blackout-react-native-riskified-integration@0.5.0) (2022-02-25)
 
 ### Features
