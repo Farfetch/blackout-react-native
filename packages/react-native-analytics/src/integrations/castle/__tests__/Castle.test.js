@@ -36,7 +36,7 @@ const mockIntegrationOptions = {
       },
     },
   },
-  configureHttpClientHeader: jest.fn(),
+  configureHttpClient: jest.fn(),
 };
 const getIntegrationInstance = async customOptions => {
   const instance = CastleReactNativeIntegration.createInstance(
@@ -90,43 +90,43 @@ describe('Castle', () => {
         expect(instance.httpClient).toEqual(coreClient);
       });
 
-      it('should allow to pass a custom "httpClient" and "configureHttpClientHeader" function', async () => {
+      it('should allow to pass a custom "httpClient" and "configureHttpClient" function', async () => {
         const instance = await getIntegrationInstance(); // already called with custom options, no need to create custom ones
 
-        expect(
-          mockIntegrationOptions.configureHttpClientHeader,
-        ).toHaveBeenCalledWith(instance);
-      });
-
-      it('should log an error if a invalid "configureHttpClientHeader" option is passed', async () => {
-        await getIntegrationInstance({
-          configureHttpClientHeader: 'foo',
-        });
-
-        expect(utils.logger.error).toHaveBeenCalledWith(
-          `${LOGGER_MESSAGE_PREFIX} TypeError: "configureHttpClientHeader" is not a function. Make sure you are passing a valid function via the integration's options.`,
+        expect(mockIntegrationOptions.configureHttpClient).toHaveBeenCalledWith(
+          instance.castleIO,
         );
       });
 
-      it('should log an error if an error occurs on "configureHttpClientHeader" custom function', async () => {
+      it('should log an error if a invalid "configureHttpClient" option is passed', async () => {
+        await getIntegrationInstance({
+          configureHttpClient: 'foo',
+        });
+
+        expect(utils.logger.error).toHaveBeenCalledWith(
+          `${LOGGER_MESSAGE_PREFIX} TypeError: "configureHttpClient" is not a function. Make sure you are passing a valid function via the integration's options.`,
+        );
+      });
+
+      it('should log an error if an error occurs on "configureHttpClient" custom function', async () => {
         const error = 'this is an error';
         await getIntegrationInstance({
-          configureHttpClientHeader: () => {
+          configureHttpClient: () => {
             throw new Error(error);
           },
         });
 
         expect(utils.logger.error).toHaveBeenCalledWith(
-          `${LOGGER_MESSAGE_PREFIX} There was an error trying to execute the "configureHttpClientHeader" custom function. Error: ${error}`,
+          `${LOGGER_MESSAGE_PREFIX} There was an error trying to execute the "configureHttpClient" custom function. Error: ${error}`,
         );
       });
 
-      it('should set the correct header with the correct name to the HTTP client (axios interceptor fullfill callback)', async () => {
+      it('should set the correct header with the correct name to the HTTP client (axios interceptor fullfil callback)', async () => {
         const instance = await getIntegrationInstance({});
 
         expect(instance.httpClientInterceptor).toBeDefined();
 
-        const config = await instance.onBeforeRequestFullfill({ headers: {} });
+        const config = await instance.onBeforeRequestFullfil({ headers: {} });
 
         expect(config).toEqual({
           headers: {
@@ -136,44 +136,27 @@ describe('Castle', () => {
 
         expect(instance.isInterceptorAttached).toBe(true);
       });
-
-      it('should log an error if fails to set the header on the HTTP client (axios interceptor reject callback)', async () => {
-        const instance = await getIntegrationInstance({});
-
-        const errorMessage = 'this is an error';
-        const errorObject = {
-          error: 500,
-          message: errorMessage,
-        };
-        instance.onBeforeRequestReject(errorObject);
-
-        expect(utils.logger.error).toHaveBeenCalledWith(
-          `${LOGGER_MESSAGE_PREFIX} Castle integration failed to append the necessary header.`,
-        );
-
-        expect(utils.logger.error).toHaveBeenCalledTimes(1);
-
-        expect(instance.isInterceptorAttached).toBe(false);
-
-        expect(instance.onBeforeRequestReject).rejects.toBe(errorObject);
-      });
     });
 
     describe('Initialization', () => {
       it('should call the .configure method of castle with the provided options', async () => {
         const castleOptions = {
-          publishableKey: '123123',
-          debugLoggingEnabled: true,
-          flushLimit: 1,
-          maxQueueLimit: 1,
-          baseURLAllowList: [],
+          configureOptions: {
+            publishableKey: '123123',
+            debugLoggingEnabled: true,
+            flushLimit: 1,
+            maxQueueLimit: 1,
+            baseURLAllowList: [],
+          },
         };
         const instance = await getIntegrationInstance({
           ...mockIntegrationOptions,
           ...castleOptions,
         });
 
-        expect(instance.castleIO.configure).toHaveBeenCalledWith(castleOptions);
+        expect(instance.castleIO.configure).toHaveBeenCalledWith(
+          castleOptions.configureOptions,
+        );
       });
 
       it('should handle any errors that may occur when trying to initialize the SDK', async () => {
