@@ -1,5 +1,6 @@
 import CastleReactNative from '@castleio/react-native-castle';
 import utils from '@farfetch/blackout-core/analytics/utils';
+import { trackTypes } from '@farfetch/blackout-core/analytics';
 import { Integration } from '@farfetch/blackout-core/analytics/integrations';
 import coreClient from '@farfetch/blackout-core/helpers/client';
 
@@ -62,32 +63,22 @@ class Castle extends Integration {
 
   /**
    * Initialization method that will configure the Castle instance with the options provided to the integration.
-   * Calls the configureHttpClientHeader to configure the HTTP client to be used on the project that will be profiled by this integration.
+   * Calls the configureHttpClient to configure the HTTP client to be used on the project that will be profiled by this integration.
    *
    * @async
    *
    * @param {object} options - User configured options.
    */
   async initialize(options) {
-    const safeOptions = options || {};
-
-    await this.configureHttpClientHeader(safeOptions);
+    await this.configureHttpClient(options);
 
     try {
-      await this.castleIO
-        .configure({
-          publishableKey: safeOptions.publishableKey,
-          debugLoggingEnabled: safeOptions.debugLoggingEnabled,
-          flushLimit: safeOptions.flushLimit,
-          maxQueueLimit: safeOptions.maxQueueLimit,
-          baseURLAllowList: safeOptions.baseURLAllowList || [],
-        })
-        .then(() => {
-          if (this.initializePromiseResolve) {
-            this.initializePromiseResolve();
-            this.initializePromiseResolve = null;
-          }
-        });
+      await this.castleIO.configure(options?.configureOptions).then(() => {
+        if (this.initializePromiseResolve) {
+          this.initializePromiseResolve();
+          this.initializePromiseResolve = null;
+        }
+      });
     } catch (error) {
       utils.logger.error(
         `${LOGGER_MESSAGE_PREFIX} Failed to initialize the Castle.io SDK. ${error}`,
@@ -103,29 +94,29 @@ class Castle extends Integration {
    *
    * @async
    */
-  async configureHttpClientHeader(options) {
+  async configureHttpClient(options) {
     // Custom configuration
-    const configureHttpClientHeaderCustomFn = options.configureHttpClientHeader;
+    const configureHttpClientCustomFn = options?.configureHttpClient;
 
     if (
-      configureHttpClientHeaderCustomFn &&
-      typeof configureHttpClientHeaderCustomFn !== 'function'
+      configureHttpClientCustomFn &&
+      typeof configureHttpClientCustomFn !== 'function'
     ) {
       utils.logger.error(
-        `${LOGGER_MESSAGE_PREFIX} TypeError: "configureHttpClientHeader" is not a function. Make sure you are passing a valid function via the integration's options.`,
+        `${LOGGER_MESSAGE_PREFIX} TypeError: "configureHttpClient" is not a function. Make sure you are passing a valid function via the integration's options.`,
       );
 
       return;
     }
 
-    if (configureHttpClientHeaderCustomFn) {
+    if (configureHttpClientCustomFn) {
       try {
-        await configureHttpClientHeaderCustomFn(this);
+        await configureHttpClientCustomFn(this.castleIO);
 
         this.isInterceptorAttached = true;
       } catch (error) {
         utils.logger.error(
-          `${LOGGER_MESSAGE_PREFIX} There was an error trying to execute the "configureHttpClientHeader" custom function. ${error}`,
+          `${LOGGER_MESSAGE_PREFIX} There was an error trying to execute the "configureHttpClient" custom function. ${error}`,
         );
 
         this.isInterceptorAttached = false;
@@ -137,9 +128,22 @@ class Castle extends Integration {
     // Default configuration of our @farfetch/blackout-core client (axios) using an interceptor.
     // Store the interceptor on the instance in case the user wants to remove it.
     this.httpClientInterceptor = this.httpClient?.interceptors?.request?.use(
-      this.onBeforeRequestFullfill,
-      this.onBeforeRequestReject,
+      this.onBeforeRequestFullfil,
+      null,
     );
+  }
+
+  /**
+   * Method that will enable screen tracking.
+   *
+   * @param {object} data - Event data provided by analytics.
+   *
+   * @async
+   */
+  async track(data) {
+    if (data.type === trackTypes.SCREEN) {
+      await this.castleIO.screen(data.event);
+    }
   }
 
   /**
@@ -149,36 +153,28 @@ class Castle extends Integration {
    *
    * @param {object} config - Axios config object.
    *
-   * @returns {object} - The modified Axios config object.
+   * @returns {Promise<AxiosConfig>} - The modified Axios config object.
    */
-  onBeforeRequestFullfill = async config => {
+  onBeforeRequestFullfil = async config => {
     await this.initializePromise;
 
-    const tokenHeaderName = await this.castleIO.requestTokenHeaderName();
-    const requestTokenValue = await this.castleIO.createRequestToken();
+    let headerName = '';
+    let headerValue = '';
 
-    config.headers[tokenHeaderName] = requestTokenValue;
+    // @TODO: remove this option when we no longer support the clientId header on our backend.
+    if (this.options?.useLegacyHeader) {
+      headerName = await this.castleIO.clientIdHeaderName();
+      headerValue = await this.castleIO.clientId();
+    } else {
+      headerName = await this.castleIO.requestTokenHeaderName();
+      headerValue = await this.castleIO.createRequestToken();
+    }
+
+    config.headers[headerName] = headerValue;
 
     this.isInterceptorAttached = true;
 
     return config;
-  };
-
-  /**
-   * Callback that is used on the Axios interceptor to handle any error when setting the Castle.io header.
-   *
-   * @async
-   *
-   * @param {object|string} error - The error itself.
-   */
-  onBeforeRequestReject = async error => {
-    this.isInterceptorAttached = false;
-
-    utils.logger.error(
-      `${LOGGER_MESSAGE_PREFIX} Castle integration failed to append the necessary header.`,
-    );
-
-    return Promise.reject(error);
   };
 
   /**
@@ -211,6 +207,7 @@ class Castle extends Integration {
       // Login - Let Castle identify the user.
       if (userId && !isGuest) {
         await this.castleIO.identify(userId, traits);
+        await this.castleIO.secure(userId);
       } else {
         // Logout
         await this.castleIO.reset();

@@ -11,7 +11,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@castleio/react-native-castle": "^1.1.0",
+    "@castleio/react-native-castle": "^1.1.5",
     "@farfetch/blackout-core": "^1.42.0",
     "@react-native-async-storage/async-storage": "^1.16.0",
     "@react-native-firebase/analytics": "^10.3.0",
@@ -22,7 +22,7 @@
     "react-native-device-info": "^5.5.8"
   },
   "peerDependencies": {
-    "@castleio/react-native-castle": "^1.1.0",
+    "@castleio/react-native-castle": "^1.1.5",
     "@farfetch/blackout-core": "^1.42.0",
     "@react-native-async-storage/async-storage": "^1.6.1",
     "@react-native-firebase/analytics": "^10.3.0",
