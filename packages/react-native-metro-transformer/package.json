@@ -12,5 +12,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "metro": "0.70.1"
   }
 }
