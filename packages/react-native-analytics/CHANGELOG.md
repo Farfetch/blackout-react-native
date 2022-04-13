@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.7.0...@farfetch/blackout-react-native-analytics@0.8.0) (2022-04-13)
+
+### Features
+
+- **react-native-analytics:** update Castle.io version ([431e5bf](https://github.com/Farfetch/blackout-react-native/commit/431e5bf7bb602edf8faa2763321fa4053dc9ec93))
+
 # [0.7.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.6.3...@farfetch/blackout-react-native-analytics@0.7.0) (2022-02-25)
 
 ### Features
