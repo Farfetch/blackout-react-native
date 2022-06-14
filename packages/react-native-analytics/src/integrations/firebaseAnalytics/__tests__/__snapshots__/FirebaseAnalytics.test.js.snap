@@ -1,0 +1,887 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Newsletter events Should track multiple gender event 1`] = `
+Array [
+  Array [
+    "sign_up_newsletter",
+    Object {
+      "newsletter_gender": "Woman,Man",
+    },
+  ],
+  Array [
+    "sign_up_newsletter",
+    Object {
+      "newsletter_gender": "WOMAN,MAN",
+    },
+  ],
+  Array [
+    "sign_up_newsletter",
+    Object {
+      "newsletter_gender": "Woman,Man",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Newsletter events Should track single gender event 1`] = `
+Array [
+  Array [
+    "sign_up_newsletter",
+    Object {
+      "newsletter_gender": "Woman",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Search events Should track search event search term instead of search query. 1`] = `
+Array [
+  "search",
+  Object {
+    "search_term": "term",
+  },
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Search events Should track search event search without search term but with search query instead. 1`] = `
+Array [
+  "search",
+  Object {
+    "search_term": "query",
+  },
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Address Info Added event correctly 1`] = `
+Array [
+  Array [
+    "add_address_info",
+    Object {
+      "address_finder": undefined,
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "delivery_type": undefined,
+      "packaging_type": undefined,
+      "shipping_tier": "Next Day",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the App Opened event correctly 1`] = `
+Array [
+  Array [
+    "app_open",
+    undefined,
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Checkout Abandoned event correctly 1`] = `
+Array [
+  Array [
+    "abandon_confirmation_checkout",
+    Object {
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Checkout Started event correctly 1`] = `
+Array [
+  Array [
+    "begin_checkout",
+    Object {
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_list_id": undefined,
+          "item_list_name": undefined,
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Checkout Step Editing event correctly 1`] = `
+Array [
+  Array [
+    "edit_checkout_step",
+    Object {
+      "checkout_step": 1,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Filters Applied event correctly 1`] = `
+Array [
+  Array [
+    "apply_filters",
+    Object {
+      "filters": "{\\"brands\\":[2765,4062],\\"categories\\":[135973],\\"colors\\":[1],\\"discount\\":[0],\\"gender\\":[0],\\"price\\":[0,1950],\\"sizes\\":[16]}",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Filters Cleared event correctly 1`] = `
+Array [
+  Array [
+    "clear_filters",
+    Object {
+      "filters": "{\\"brands\\":[2765,4062],\\"categories\\":[135973],\\"colors\\":[1],\\"discount\\":[0],\\"gender\\":[0],\\"price\\":[0,1950],\\"sizes\\":[16]}",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Interact Content event correctly 1`] = `
+Array [
+  Array [
+    "interact_content",
+    Object {
+      "content_type": "biz",
+      "interaction_type": "Click",
+      "some_other_property": 12312312,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Login event correctly 1`] = `
+Array [
+  Array [
+    "login",
+    Object {
+      "method": "Acme",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Order Completed event correctly 1`] = `
+Array [
+  Array [
+    "purchase",
+    Object {
+      "affiliation": undefined,
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_list_id": undefined,
+          "item_list_name": undefined,
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "shipping": 3.6,
+      "tax": 2.04,
+      "transaction_id": "50314b8e9bcf000000000000",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Order Refunded event correctly 1`] = `
+Array [
+  Array [
+    "refund",
+    Object {
+      "affiliation": undefined,
+      "coupon": undefined,
+      "currency": "USD",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_list_id": undefined,
+          "item_list_name": undefined,
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "shipping": undefined,
+      "tax": undefined,
+      "transaction_id": "50314b8e9bcf000000000000",
+      "value": 19,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Payment Info Added event correctly 1`] = `
+Array [
+  Array [
+    "add_payment_info",
+    Object {
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_list_id": undefined,
+          "item_list_name": undefined,
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "payment_type": "credit card",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Place Order Started event correctly 1`] = `
+Array [
+  Array [
+    "place_order",
+    Object {
+      "affiliation": undefined,
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "shipping": 3.6,
+      "tax": 2.04,
+      "transaction_id": "50314b8e9bcf000000000000",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Product Added to Cart event correctly 1`] = `
+Array [
+  Array [
+    "add_to_cart",
+    Object {
+      "currency": "USD",
+      "from": "Wishlist",
+      "item_list_id": "d3618128-5aa9-4caa-a452-1dd1377a6190",
+      "item_list_name": "my_wishlist",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "value": 19,
+      "wishlist_id": undefined,
+      "wishlist_name": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Product Added to Wishlist event correctly 1`] = `
+Array [
+  Array [
+    "add_to_wishlist",
+    Object {
+      "currency": "USD",
+      "from": "PLP",
+      "item_list_id": "/en-pt/shopping/woman",
+      "item_list_name": "Woman shopping",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": undefined,
+          "size": undefined,
+        },
+      ],
+      "value": 19,
+      "wishlist_id": "d3618128-5aa9-4caa-a452-1dd1377a6190",
+      "wishlist_name": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Product Clicked event correctly 1`] = `
+Array [
+  Array [
+    "select_item",
+    Object {
+      "from": "PLP",
+      "item_list_id": "/en-pt/shopping/woman",
+      "item_list_name": "Woman shopping",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "GBP",
+          "discount": 6,
+          "index": 3,
+          "item_brand": undefined,
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": undefined,
+          "location_id": undefined,
+          "price": 25,
+          "quantity": undefined,
+          "size": undefined,
+        },
+      ],
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Product List Viewed event correctly 1`] = `
+Array [
+  Array [
+    "view_item_list",
+    Object {
+      "error": undefined,
+      "filters": undefined,
+      "from": "PLP",
+      "item_list_id": undefined,
+      "item_list_name": "Woman shopping",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": 2,
+          "item_brand": undefined,
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_list_id": "09a35590-bb62-4027-a630-5da04ec64fb5",
+          "item_list_name": "Woman shopping",
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": undefined,
+          "location_id": undefined,
+          "price": 25,
+          "quantity": undefined,
+          "size": undefined,
+        },
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": 3,
+          "item_brand": undefined,
+          "item_id": "507f1f77bcf86cd799439012",
+          "item_list_id": "09a35590-bb62-4027-a630-5da04ec64fb5",
+          "item_list_name": "Woman shopping",
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": undefined,
+          "location_id": undefined,
+          "price": 25,
+          "quantity": undefined,
+          "size": undefined,
+        },
+      ],
+      "sort_option": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Product Removed From Wishlist event correctly 1`] = `
+Array [
+  Array [
+    "remove_from_wishlist",
+    Object {
+      "affiliation": undefined,
+      "coupon": undefined,
+      "currency": "USD",
+      "discount": 6,
+      "from": "PLP",
+      "index": undefined,
+      "item_brand": "Just A T-Shirt",
+      "item_category": "Clothing",
+      "item_category2": "Tops",
+      "item_category3": "T-shirts",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_list_id": "/en-pt/shopping/woman",
+      "item_list_name": "Woman shopping",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "item_variant": "Black",
+      "location_id": undefined,
+      "price": 25,
+      "quantity": undefined,
+      "size": undefined,
+      "value": 19,
+      "wishlist_id": "d3618128-5aa9-4caa-a452-1dd1377a6190",
+      "wishlist_name": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Product Removed from Cart event correctly 1`] = `
+Array [
+  Array [
+    "remove_from_cart",
+    Object {
+      "currency": "USD",
+      "from": "Bag",
+      "item_list_id": "e0030b3c-b970-4496-bc72-f9a38d6270b1",
+      "item_list_name": "Bag",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": 1,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "value": 19,
+      "wishlist_id": undefined,
+      "wishlist_name": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Product Viewed event correctly 1`] = `
+Array [
+  Array [
+    "view_item",
+    Object {
+      "currency": "USD",
+      "from": "PLP",
+      "image_count": undefined,
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": undefined,
+          "size": undefined,
+        },
+      ],
+      "value": 19,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Promocode Applied event correctly 1`] = `
+Array [
+  Array [
+    "apply_promo_code",
+    Object {
+      "address_finder": undefined,
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "delivery_type": undefined,
+      "packaging_type": undefined,
+      "shipping_tier": "Next Day",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Select Content event correctly 1`] = `
+Array [
+  Array [
+    "select_content",
+    Object {
+      "content_type": "biz",
+      "item_id": 12312312,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Share event correctly 1`] = `
+Array [
+  Array [
+    "share",
+    Object {
+      "content_type": "image",
+      "item_id": "123456",
+      "method": "Facebook",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Shipping Info Added event correctly 1`] = `
+Array [
+  Array [
+    "add_shipping_info",
+    Object {
+      "address_finder": undefined,
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "delivery_type": undefined,
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": "USD",
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_list_id": undefined,
+          "item_list_name": undefined,
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "packaging_type": undefined,
+      "shipping_tier": "Next Day",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Shipping Method Added event correctly 1`] = `
+Array [
+  Array [
+    "add_shipping_method",
+    Object {
+      "address_finder": undefined,
+      "coupon": "ACME2019",
+      "currency": "USD",
+      "delivery_type": undefined,
+      "packaging_type": undefined,
+      "shipping_tier": "Next Day",
+      "value": 24.64,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Sign-up Form Completed event correctly 1`] = `
+Array [
+  Array [
+    "sign_up",
+    Object {
+      "method": "Acme",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the Sign-up Newsletter event correctly 1`] = `
+Array [
+  Array [
+    "sign_up_newsletter",
+    Object {
+      "newsletter_gender": "Woman",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the bag event correctly 1`] = `
+Array [
+  Array [
+    "view_cart",
+    Object {
+      "currency": "USD",
+      "from": "Bag",
+      "item_list_id": "e0030b3c-b970-4496-bc72-f9a38d6270b1",
+      "item_list_name": "Bag",
+      "items": Array [
+        Object {
+          "affiliation": undefined,
+          "coupon": undefined,
+          "currency": undefined,
+          "discount": 6,
+          "index": undefined,
+          "item_brand": "Just A T-Shirt",
+          "item_category": "Clothing",
+          "item_category2": "Tops",
+          "item_category3": "T-shirts",
+          "item_id": "507f1f77bcf86cd799439011",
+          "item_list_id": undefined,
+          "item_list_name": undefined,
+          "item_name": "Gareth McConnell Dreamscape T-Shirt",
+          "item_variant": "Black",
+          "location_id": undefined,
+          "price": 25,
+          "quantity": 1,
+          "size": "L",
+        },
+      ],
+      "value": 19,
+      "wishlist_id": undefined,
+      "wishlist_name": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the bag event correctly 2`] = `
+Array [
+  Array [
+    Object {
+      "currency": "USD",
+      "from": "Bag",
+      "list": "Bag",
+      "list_id": "e0030b3c-b970-4496-bc72-f9a38d6270b1",
+      "screen_class": "bag",
+      "screen_name": "bag",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the search event correctly 1`] = `
+Array [
+  Array [
+    "search",
+    Object {
+      "search_term": "shoes",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the search event correctly 2`] = `
+Array [
+  Array [
+    Object {
+      "currency": "EUR",
+      "screen_class": "search",
+      "screen_name": "search",
+      "search_query": "shoes",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the wishlist event correctly 1`] = `
+Array [
+  Array [
+    "view_wishlist",
+    Object {
+      "wishlist_id": "d3618128-5aa9-4caa-a452-1dd1377a6190",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Should map the wishlist event correctly 2`] = `
+Array [
+  Array [
+    Object {
+      "currency": "USD",
+      "from": "Wishlist",
+      "screen_class": "wishlist",
+      "screen_name": "wishlist",
+      "wishlist_id": "d3618128-5aa9-4caa-a452-1dd1377a6190",
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Update Product events Should send "change_colour" event to firebase 1`] = `
+Array [
+  Array [
+    "change_colour",
+    Object {
+      "colour": "red",
+      "from": "Bag",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "old_colour": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Update Product events Should send "change_quantity" event to firebase 1`] = `
+Array [
+  Array [
+    "change_quantity",
+    Object {
+      "from": "Bag",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "old_quantity": undefined,
+      "quantity": 1,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Update Product events Should send "change_quantity", "change_size" and "change_colour" events to firebase when a product updated event contains all the necessary changes 1`] = `
+Array [
+  Array [
+    "change_quantity",
+    Object {
+      "from": "Bag",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "old_quantity": undefined,
+      "quantity": 1,
+    },
+  ],
+  Array [
+    "change_size",
+    Object {
+      "from": "Bag",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "old_size": undefined,
+      "size": "L",
+    },
+  ],
+  Array [
+    "change_colour",
+    Object {
+      "colour": "red",
+      "from": "Bag",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "old_colour": undefined,
+    },
+  ],
+]
+`;
+
+exports[`FirebaseAnalyticsIntegration instance Track Default events mappings Update Product events Should send "change_size" event to firebase 1`] = `
+Array [
+  Array [
+    "change_quantity",
+    Object {
+      "from": "Bag",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "old_quantity": undefined,
+      "quantity": 1,
+    },
+  ],
+  Array [
+    "change_colour",
+    Object {
+      "colour": "red",
+      "from": "Bag",
+      "item_id": "507f1f77bcf86cd799439011",
+      "item_name": "Gareth McConnell Dreamscape T-Shirt",
+      "old_colour": undefined,
+    },
+  ],
+]
+`;
