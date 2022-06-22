@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.5.2...@farfetch/blackout-react-native-riskified-integration@0.6.0) (2022-06-22)
+
+### Features
+
+- **react-native-analytics:** update firebase mappings ([e2f6814](https://github.com/Farfetch/blackout-react-native/commit/e2f68146a735ca9b3637c7d46e5dd85c7df99729))
+
+### BREAKING CHANGES
+
+- **react-native-analytics:** Now all integrations will use the same events API
+  that is being used by web applications. This means it is now possible
+  to use the bag and wishlist redux middlewares as they will
+  now be compatible with this implementation.
+  Also, AnalyticsService integration was removed as it
+  will not be supported in the future.
+
 ## [0.5.2](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.5.1...@farfetch/blackout-react-native-riskified-integration@0.5.2) (2022-04-13)
 
 **Note:** Version bump only for package @farfetch/blackout-react-native-riskified-integration
