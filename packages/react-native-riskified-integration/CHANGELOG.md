@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.6.0...@farfetch/blackout-react-native-riskified-integration@0.6.1) (2022-07-18)
+
+### Bug Fixes
+
+- **riskified-integration:** upgrade `react-native` version to 0.69.1 ([4e736e3](https://github.com/Farfetch/blackout-react-native/commit/4e736e3f9b21e421512f336bf84e89da4d5c0168))
+
 # [0.6.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-riskified-integration@0.5.2...@farfetch/blackout-react-native-riskified-integration@0.6.0) (2022-06-22)
 
 ### Features
