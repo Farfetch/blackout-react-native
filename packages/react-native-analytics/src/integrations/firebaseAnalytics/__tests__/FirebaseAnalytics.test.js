@@ -20,6 +20,7 @@ import screenTypes from '../../../screenTypes';
 import {
   MAX_PRODUCT_CATEGORIES,
   OPTION_EVENTS_MAPPER,
+  OPTION_GOOGLE_CONSENT_CONFIG,
   OPTION_SCREEN_VIEWS_MAPPER,
   OPTION_SET_CUSTOM_USER_ID_PROPERTY,
 } from '../constants';
@@ -31,6 +32,7 @@ const mockFirebaseAnalyticsReturn = {
   setUserProperties: jest.fn(),
   logEvent: jest.fn(),
   logSelectItem: jest.fn(),
+  setConsent: jest.fn(),
 };
 
 jest.mock('@react-native-firebase/analytics', () => {
@@ -375,9 +377,9 @@ describe('FirebaseAnalyticsIntegration instance', () => {
         },
       };
 
-      createInstance(null, loadData);
+      createInstance(undefined, loadData);
 
-      expect(spy).toHaveBeenCalledWith(loadData, null);
+      expect(spy).toHaveBeenCalledWith(loadData, {});
     });
 
     it('Should call custom `onSetUser` function if passed via the integration options', () => {
@@ -979,6 +981,39 @@ describe('FirebaseAnalyticsIntegration instance', () => {
             }),
           );
         });
+      });
+    });
+  });
+
+  describe('Consent', () => {
+    it('Should update the user consent on the native side when setConsent is called', async () => {
+      const instance = createInstance({
+        [OPTION_GOOGLE_CONSENT_CONFIG]: {
+          ad_user_data: { categories: ['marketing'] },
+          ad_personalization: { categories: ['marketing'] },
+          analytics_storage: { categories: ['marketing'] },
+          ad_storage: { categories: ['marketing'] },
+        },
+      });
+
+      await instance.setConsent({ marketing: true });
+
+      expect(firebaseAnalytics().setConsent).toHaveBeenCalledWith({
+        ad_personalization: true,
+        ad_storage: true,
+        ad_user_data: true,
+        analytics_storage: true,
+      });
+
+      jest.clearAllMocks();
+
+      await instance.setConsent({ marketing: false });
+
+      expect(firebaseAnalytics().setConsent).toHaveBeenCalledWith({
+        ad_personalization: false,
+        ad_storage: false,
+        ad_user_data: false,
+        analytics_storage: false,
       });
     });
   });
