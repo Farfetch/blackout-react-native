@@ -9,6 +9,7 @@ import {
   OPTION_ON_SET_USER_HANDLER,
   OPTION_SCREEN_VIEWS_MAPPER,
   OPTION_SET_CUSTOM_USER_ID_PROPERTY,
+  OPTION_GOOGLE_CONSENT_CONFIG,
 } from './constants';
 import {
   defaultEventsMapper,
@@ -49,13 +50,14 @@ class FirebaseAnalytics extends Integration {
    * @param {object} options - User configured options.
    * @param {object} loadData - Analytics' load event data.
    */
-  constructor(options, loadData) {
+  constructor(options = {}, loadData) {
     super(options, loadData);
 
     checkRNFirebaseAnalyticsInstalled();
 
     this.initialize(options);
     this.onSetUser(loadData, options);
+    this.googleConsentConfig = options[OPTION_GOOGLE_CONSENT_CONFIG];
   }
 
   /**
@@ -361,6 +363,43 @@ class FirebaseAnalytics extends Integration {
     } else if (firebaseEvent) {
       // 'logEvent' will be used by default only if there is a corresponding event to track
       await firebaseAnalytics().logEvent(firebaseEvent, properties);
+    }
+  }
+
+  /**
+   * Overrides super.setConsent to update the consent values
+   * on the native side (via react-native-firebase) by matching
+   * the consent config with the user's given consent.
+   *
+   * @param {object} consentData - Consent object containing the user consent.
+   */
+  async setConsent(consentData) {
+    if (this.googleConsentConfig) {
+      // Dealing with null or undefined consent values
+      const safeConsent = consentData || {};
+
+      // Fill consent value into consent element, using analytics consent categories
+      const consentValues = Object.keys(this.googleConsentConfig).reduce(
+        (result, consentKey) => {
+          let consentValue = false;
+
+          const consent = this.googleConsentConfig[consentKey];
+
+          if (consent && consent.categories) {
+            consentValue = consent.categories.every(
+              consentCategory => safeConsent[consentCategory],
+            );
+          }
+
+          return {
+            ...result,
+            [consentKey]: consentValue,
+          };
+        },
+        {},
+      );
+
+      await firebaseAnalytics().setConsent(consentValues);
     }
   }
 }
