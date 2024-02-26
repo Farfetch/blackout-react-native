@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.9.0...@farfetch/blackout-react-native-analytics@0.10.0) (2024-02-26)
+
+### Features
+
+- **analytics:** add support to consent mode in Firebase ([930bc79](https://github.com/Farfetch/blackout-react-native/commit/930bc796690074a63b2fe818ba405cf1f44772f0))
+
 # [0.9.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.8.0...@farfetch/blackout-react-native-analytics@0.9.0) (2022-06-22)
 
 ### Features
