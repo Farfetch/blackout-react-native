@@ -51,7 +51,7 @@ class FirebaseAnalytics extends Integration {
    * @param {object} options - User configured options.
    * @param {object} loadData - Analytics' load event data.
    */
-  constructor(options = {}, loadData) {
+  constructor(options = {}, loadData = {}) {
     super(options, loadData);
 
     checkRNFirebaseAnalyticsInstalled();
@@ -62,6 +62,9 @@ class FirebaseAnalytics extends Integration {
     this.googleConsentConfigWithoutMode = omit(this.googleConsentConfig, [
       'mode',
     ]);
+
+    // Call setConsent so that consent mode is persisted
+    this.setConsent(loadData.consent);
   }
 
   /**
@@ -384,7 +387,7 @@ class FirebaseAnalytics extends Integration {
    * @param {object} consentData - Consent object containing the user consent.
    */
   async setConsent(consentData) {
-    if (this.googleConsentConfigWithoutMode) {
+    if (this.googleConsentConfigWithoutMode && consentData) {
       // Dealing with null or undefined consent values
       const safeConsent = consentData || {};
 
@@ -415,7 +418,8 @@ class FirebaseAnalytics extends Integration {
       // will only be called if the integration was loaded, i.e., the
       // statistics consent was given.
       if (
-        get(this.options, `${OPTION_GOOGLE_CONSENT_CONFIG}.mode`) === 'Basic'
+        get(this.options, `${OPTION_GOOGLE_CONSENT_CONFIG}.mode`, 'Basic') ===
+        'Basic'
       ) {
         await firebaseAnalytics().setAnalyticsCollectionEnabled(true);
       }
