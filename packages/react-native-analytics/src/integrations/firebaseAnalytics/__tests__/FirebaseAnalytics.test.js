@@ -126,6 +126,23 @@ describe('FirebaseAnalyticsIntegration integration', () => {
 });
 
 describe('FirebaseAnalyticsIntegration instance', () => {
+  describe('constructor', () => {
+    it('should call setConsent', () => {
+      const spy = jest.spyOn(
+        FirebaseAnalyticsIntegration.prototype,
+        'setConsent',
+      );
+
+      const loadData = {
+        consent: { marketing: true, preferences: true, statistics: true },
+      };
+
+      createInstance(undefined, loadData);
+
+      expect(spy).toHaveBeenCalledWith(loadData.consent);
+    });
+  });
+
   describe(`${OPTION_SCREEN_VIEWS_MAPPER} option`, () => {
     it('Should allow to add/override custom screen view mappers', () => {
       const mockCustomScreenViewMapperFunction = jest.fn();
@@ -1016,7 +1033,6 @@ describe('FirebaseAnalyticsIntegration instance', () => {
             ad_personalization: { categories: ['marketing'] },
             analytics_storage: { categories: ['marketing'] },
             ad_storage: { categories: ['marketing'] },
-            mode: 'Basic',
           },
         });
 
@@ -1036,7 +1052,7 @@ describe('FirebaseAnalyticsIntegration instance', () => {
     });
 
     describe('When in advanced mode', () => {
-      it('should not call `setAnalyticsCollectionEnabled` in setConsent', async () => {
+      it('should not call `setAnalyticsCollectionEnabled` in setConsent but should call `setConsent` from firebase analytics if consent is not null', async () => {
         const instance = createInstance({
           [OPTION_GOOGLE_CONSENT_CONFIG]: {
             ad_user_data: { categories: ['marketing'] },
@@ -1055,6 +1071,26 @@ describe('FirebaseAnalyticsIntegration instance', () => {
           ad_user_data: true,
           analytics_storage: true,
         });
+
+        expect(
+          firebaseAnalytics().setAnalyticsCollectionEnabled,
+        ).not.toHaveBeenCalled();
+      });
+
+      it('should not call both `setAnalyticsCollectionEnabled` and `setConsent` from firebase analytics in setConsent if consent is null', async () => {
+        const instance = createInstance({
+          [OPTION_GOOGLE_CONSENT_CONFIG]: {
+            ad_user_data: { categories: ['marketing'] },
+            ad_personalization: { categories: ['marketing'] },
+            analytics_storage: { categories: ['marketing'] },
+            ad_storage: { categories: ['marketing'] },
+            mode: 'Advanced',
+          },
+        });
+
+        await instance.setConsent(null);
+
+        expect(firebaseAnalytics().setConsent).not.toHaveBeenCalled();
 
         expect(
           firebaseAnalytics().setAnalyticsCollectionEnabled,
