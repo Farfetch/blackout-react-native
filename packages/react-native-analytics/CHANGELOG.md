@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.11.0...@farfetch/blackout-react-native-analytics@0.11.1) (2024-02-27)
+
+### Bug Fixes
+
+- **analytics:** fix bugs with `basic` mode in FirebaseAnalytics ([cebbe9b](https://github.com/Farfetch/blackout-react-native/commit/cebbe9bf36740267693fec880f40d9990cad809c))
+
 # [0.11.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.10.0...@farfetch/blackout-react-native-analytics@0.11.0) (2024-02-27)
 
 ### Features
