@@ -244,6 +244,8 @@ describe('Forter', () => {
             }),
           );
 
+          jest.clearAllMocks();
+
           const mockSecondUserEventData = generateAnalyticsEventData(
             'onSetUser',
             'onSetUser',

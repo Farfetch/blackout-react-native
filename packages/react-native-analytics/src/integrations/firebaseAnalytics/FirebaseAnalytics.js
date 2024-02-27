@@ -17,6 +17,7 @@ import {
   getVirtualEventsFromEvent,
 } from './defaultMappers';
 import get from 'lodash/get';
+import omit from 'lodash/omit';
 import Integration from '../integration';
 import screenTypes from '../../screenTypes';
 
@@ -58,18 +59,27 @@ class FirebaseAnalytics extends Integration {
     this.initialize(options);
     this.onSetUser(loadData, options);
     this.googleConsentConfig = options[OPTION_GOOGLE_CONSENT_CONFIG];
+    this.googleConsentConfigWithoutMode = omit(this.googleConsentConfig, [
+      'mode',
+    ]);
   }
 
   /**
    * Method to check if the integration is ready to be loaded.
+   * If the googleConsentConfig.mode property is set to 'Advanced'
+   * the integration will be loaded regardless of user consent.
+   * Else, only if statistics consent is given by the user.
    *
-   * @static
+   * @param consent - User consent data.
+   * @param options - Options passed for the Firebase integration.
    *
-   * @param {object} consent - The consent object representing the user preferences.
-   *
-   * @returns {boolean} - If the integration is ready to be loaded.
+   * @returns If the integration is ready to be loaded.
    */
-  static shouldLoad(consent) {
+  static shouldLoad(consent, options) {
+    if (get(options, `${OPTION_GOOGLE_CONSENT_CONFIG}.mode`) === 'Advanced') {
+      return true;
+    }
+
     return !!consent && !!consent.statistics;
   }
 
@@ -374,32 +384,41 @@ class FirebaseAnalytics extends Integration {
    * @param {object} consentData - Consent object containing the user consent.
    */
   async setConsent(consentData) {
-    if (this.googleConsentConfig) {
+    if (this.googleConsentConfigWithoutMode) {
       // Dealing with null or undefined consent values
       const safeConsent = consentData || {};
 
       // Fill consent value into consent element, using analytics consent categories
-      const consentValues = Object.keys(this.googleConsentConfig).reduce(
-        (result, consentKey) => {
-          let consentValue = false;
+      const consentValues = Object.keys(
+        this.googleConsentConfigWithoutMode,
+      ).reduce((result, consentKey) => {
+        let consentValue = false;
 
-          const consent = this.googleConsentConfig[consentKey];
+        const consent = this.googleConsentConfigWithoutMode[consentKey];
 
-          if (consent && consent.categories) {
-            consentValue = consent.categories.every(
-              consentCategory => safeConsent[consentCategory],
-            );
-          }
+        if (consent && consent.categories) {
+          consentValue = consent.categories.every(
+            consentCategory => safeConsent[consentCategory],
+          );
+        }
 
-          return {
-            ...result,
-            [consentKey]: consentValue,
-          };
-        },
-        {},
-      );
+        return {
+          ...result,
+          [consentKey]: consentValue,
+        };
+      }, {});
 
       await firebaseAnalytics().setConsent(consentValues);
+
+      // If in basic mode we need to activate analytics collection
+      // We do not need to look for the consent variable because this method
+      // will only be called if the integration was loaded, i.e., the
+      // statistics consent was given.
+      if (
+        get(this.options, `${OPTION_GOOGLE_CONSENT_CONFIG}.mode`) === 'Basic'
+      ) {
+        await firebaseAnalytics().setAnalyticsCollectionEnabled(true);
+      }
     }
   }
 }

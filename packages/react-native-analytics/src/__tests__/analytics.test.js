@@ -79,7 +79,12 @@ describe('analytics react native', () => {
           type: trackTypes.TRACK,
           event,
           properties,
-          context: expect.objectContaining({ event: eventContext }),
+          context: expect.objectContaining({
+            event: expect.objectContaining({
+              ...eventContext,
+              __blackoutAnalyticsEventId: expect.any(String),
+            }),
+          }),
         }),
       );
 
@@ -99,7 +104,12 @@ describe('analytics react native', () => {
           type: trackTypes.SCREEN,
           event,
           properties,
-          context: expect.objectContaining({ event: eventContext }),
+          context: expect.objectContaining({
+            event: expect.objectContaining({
+              ...eventContext,
+              __blackoutAnalyticsEventId: expect.any(String),
+            }),
+          }),
         }),
       );
     });
