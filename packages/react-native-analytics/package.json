@@ -1,6 +1,6 @@
 {
   "name": "@farfetch/blackout-react-native-analytics",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Analytics solution for react-native apps",
   "main": "src/index.js",
   "files": [

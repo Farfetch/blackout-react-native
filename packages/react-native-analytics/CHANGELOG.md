@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.10.0...@farfetch/blackout-react-native-analytics@0.11.0) (2024-02-27)
+
+### Features
+
+- **analytics:** add mode property to Firebase integration ([c8e4ac4](https://github.com/Farfetch/blackout-react-native/commit/c8e4ac48306e1cbb5942dc3e06e581dbca80a562))
+
 # [0.10.0](https://github.com/Farfetch/blackout-react-native/compare/@farfetch/blackout-react-native-analytics@0.9.0...@farfetch/blackout-react-native-analytics@0.10.0) (2024-02-26)
 
 ### Features
