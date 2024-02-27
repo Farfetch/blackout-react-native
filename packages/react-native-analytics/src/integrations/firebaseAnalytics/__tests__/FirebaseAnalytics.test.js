@@ -33,6 +33,7 @@ const mockFirebaseAnalyticsReturn = {
   logEvent: jest.fn(),
   logSelectItem: jest.fn(),
   setConsent: jest.fn(),
+  setAnalyticsCollectionEnabled: jest.fn(),
 };
 
 jest.mock('@react-native-firebase/analytics', () => {
@@ -70,18 +71,39 @@ describe('FirebaseAnalyticsIntegration integration', () => {
     expect(FirebaseAnalyticsIntegration.prototype).toBeInstanceOf(Integration);
   });
 
-  it('`shouldLoad` should return false if there is no user consent', () => {
-    expect(FirebaseAnalyticsIntegration.shouldLoad({ statistics: false })).toBe(
-      false,
-    );
-    expect(FirebaseAnalyticsIntegration.shouldLoad()).toBe(false);
-    expect(FirebaseAnalyticsIntegration.shouldLoad({})).toBe(false);
-  });
+  describe('shouldLoad', () => {
+    describe('When in basic mode', () => {
+      it('`shouldLoad` should return false if there is no user consent', () => {
+        expect(
+          FirebaseAnalyticsIntegration.shouldLoad({ statistics: false }),
+        ).toBe(false);
+        expect(FirebaseAnalyticsIntegration.shouldLoad()).toBe(false);
+        expect(FirebaseAnalyticsIntegration.shouldLoad({})).toBe(false);
+      });
 
-  it('`shouldLoad` should return true if there is user consent', () => {
-    expect(FirebaseAnalyticsIntegration.shouldLoad({ statistics: true })).toBe(
-      true,
-    );
+      it('`shouldLoad` should return true if there is user consent', () => {
+        expect(
+          FirebaseAnalyticsIntegration.shouldLoad({ statistics: true }),
+        ).toBe(true);
+      });
+    });
+
+    describe('When in advanced mode', () => {
+      it('`shouldLoad` should return true whether there is user consent or not', () => {
+        expect(
+          FirebaseAnalyticsIntegration.shouldLoad(
+            { statistics: false },
+            { [OPTION_GOOGLE_CONSENT_CONFIG]: { mode: 'Advanced' } },
+          ),
+        ).toBe(true);
+        expect(
+          FirebaseAnalyticsIntegration.shouldLoad(
+            { statistics: true },
+            { [OPTION_GOOGLE_CONSENT_CONFIG]: { mode: 'Advanced' } },
+          ),
+        ).toBe(true);
+      });
+    });
   });
 
   it('Should return a FirebaseAnalyticsIntegration instance from createInstance', () => {
@@ -986,6 +1008,60 @@ describe('FirebaseAnalyticsIntegration instance', () => {
   });
 
   describe('Consent', () => {
+    describe('When in basic mode', () => {
+      it('should call `setAnalyticsCollectionEnabled` with true in setConsent', async () => {
+        const instance = createInstance({
+          [OPTION_GOOGLE_CONSENT_CONFIG]: {
+            ad_user_data: { categories: ['marketing'] },
+            ad_personalization: { categories: ['marketing'] },
+            analytics_storage: { categories: ['marketing'] },
+            ad_storage: { categories: ['marketing'] },
+            mode: 'Basic',
+          },
+        });
+
+        await instance.setConsent({ marketing: true });
+
+        expect(firebaseAnalytics().setConsent).toHaveBeenCalledWith({
+          ad_personalization: true,
+          ad_storage: true,
+          ad_user_data: true,
+          analytics_storage: true,
+        });
+
+        expect(
+          firebaseAnalytics().setAnalyticsCollectionEnabled,
+        ).toHaveBeenCalledWith(true);
+      });
+    });
+
+    describe('When in advanced mode', () => {
+      it('should not call `setAnalyticsCollectionEnabled` in setConsent', async () => {
+        const instance = createInstance({
+          [OPTION_GOOGLE_CONSENT_CONFIG]: {
+            ad_user_data: { categories: ['marketing'] },
+            ad_personalization: { categories: ['marketing'] },
+            analytics_storage: { categories: ['marketing'] },
+            ad_storage: { categories: ['marketing'] },
+            mode: 'Advanced',
+          },
+        });
+
+        await instance.setConsent({ marketing: true });
+
+        expect(firebaseAnalytics().setConsent).toHaveBeenCalledWith({
+          ad_personalization: true,
+          ad_storage: true,
+          ad_user_data: true,
+          analytics_storage: true,
+        });
+
+        expect(
+          firebaseAnalytics().setAnalyticsCollectionEnabled,
+        ).not.toHaveBeenCalled();
+      });
+    });
+
     it('Should update the user consent on the native side when setConsent is called', async () => {
       const instance = createInstance({
         [OPTION_GOOGLE_CONSENT_CONFIG]: {

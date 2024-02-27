@@ -1,4 +1,7 @@
-import { trackTypes as analyticsTrackTypes } from '@farfetch/blackout-core/analytics';
+import {
+  trackTypes as analyticsTrackTypes,
+  utils,
+} from '@farfetch/blackout-core/analytics';
 
 export default function generateAnalyticsEventData(
   trackType = analyticsTrackTypes.TRACK,
@@ -13,7 +16,10 @@ export default function generateAnalyticsEventData(
       device: 'iPhone13,2',
       deviceLanguage: 'en',
       deviceOS: 'iOS 14.3',
-      event: null,
+      event: {
+        [utils.ANALYTICS_UNIQUE_EVENT_ID]:
+          '179373c4-5651-40fe-8a50-66c3d7c86912',
+      },
       library: {
         version: '1.15.0-chore-FPSCH-625-add-support-for-site-features.0',
         name: '@farfetch/blackout-core/analytics',

@@ -5,11 +5,13 @@ Object {
   "ADDRESS_INFO_ADDED": "Address Info Added",
   "APP_CLOSED": "App Closed",
   "APP_OPENED": "App Opened",
+  "BILLING_INFO_ADDED": "Billing Info Added",
   "CHECKOUT_ABANDONED": "Checkout Abandoned",
   "CHECKOUT_STARTED": "Checkout Started",
   "CHECKOUT_STEP_COMPLETED": "Checkout Step Completed",
   "CHECKOUT_STEP_EDITING": "Checkout Step Editing",
   "CHECKOUT_STEP_VIEWED": "Checkout Step Viewed",
+  "DELIVERY_METHOD_ADDED": "Delivery Method Added",
   "FILTERS_APPLIED": "Filters Applied",
   "FILTERS_CLEARED": "Filters Cleared",
   "INTERACT_CONTENT": "Interact Content",
@@ -37,5 +39,6 @@ Object {
   "SIGNUP_FORM_COMPLETED": "Sign-up Form Completed",
   "SIGNUP_FORM_VIEWED": "Sign-up Form Viewed",
   "SIGNUP_NEWSLETTER": "Sign-up Newsletter",
+  "SITE_PERFORMANCE": "Site Performance",
 }
 `;
